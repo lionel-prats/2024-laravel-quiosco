@@ -15,11 +15,17 @@ class ProductoController extends Controller
     {
         // return new ProductoCollection(Producto::all());
         // return new ProductoCollection(Producto::orderBy("id", "DESC")->paginate(10));
+        // return new ProductoCollection(
+        //     Producto::
+        //         where("disponible", 1)
+        //         ->orderBy("id", "DESC")
+        //         ->paginate(10)
+        // );
         return new ProductoCollection(
             Producto::
                 where("disponible", 1)
                 ->orderBy("id", "DESC")
-                ->paginate(10)
+                ->get()
         );
     }
 
