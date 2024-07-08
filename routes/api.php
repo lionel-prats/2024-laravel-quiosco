@@ -19,13 +19,16 @@ use App\Http\Controllers\CategoriaController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+    // Route::apiResource('/categorias', CategoriaController::class);
+    // Route::apiResource('/productos', ProductoController::class);
 });
 
 // esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) categorias (v298)
 Route::apiResource('/categorias', CategoriaController::class);
 
-// esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) productos (v305)
+// // esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) productos (v305)
 Route::apiResource('/productos', ProductoController::class);
 
 // autenticacion 
 Route::post('/registro', [AuthController::class, "register"]);
+Route::post('/login', [AuthController::class, "login"]); // v315

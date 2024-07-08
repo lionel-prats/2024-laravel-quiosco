@@ -15,8 +15,11 @@ return [
     |
     */
 
+    // todos los endpoints que empiezen con el prefijo api/ van a soportar CORS (v313)
+    // el cookie de sanctum nos va a permitir identificar el recurso que esta realizando una peticion, entonces enviamos un cookie, almacena ese cookie, y entonces ya podemos comenzar a utilizar la autenticacion de laravel (v313)
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
+    // aca se setean los metodos que estan permitidos ("*" = todos) (v313)
     'allowed_methods' => ['*'],
 
     'allowed_origins' => ['*'],
@@ -29,6 +32,7 @@ return [
 
     'max_age' => 0,
 
-    'supports_credentials' => false,
+    // 'supports_credentials' => false,
+    'supports_credentials' => true,
 
 ];
