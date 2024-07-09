@@ -17,10 +17,18 @@ use App\Http\Controllers\CategoriaController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-    // Route::apiResource('/categorias', CategoriaController::class);
-    // Route::apiResource('/productos', ProductoController::class);
+// ruta default de Laravel a /api/user, comentada en el v323, reemplazada por el codigo de abajo
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// este grupo de rutas de mi API requieren un token de autenticacion en los headers de la peticion para responder correctamente vvv (v323) 
+// headers: { ..., Authorization: "Bearer 55|JgmpIeqrdMd...", ... } (v323)
+Route::middleware('auth:sanctum')->group(function() {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
+    Route::post('/logout', [AuthController::class, "logout"]); // v323
 });
 
 // esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) categorias (v298)

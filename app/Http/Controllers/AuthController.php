@@ -67,12 +67,14 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
-        // Auth::guard('web')->logout();
+        // identificamso que usuario esta realizando el request (la peticion desde el cliente)
+        $user = $request->user();
 
-        // $request->session()->invalidate();
-
-        // $request->session()->regenerateToken();
-
-        // return redirect('/');
+        // esta linea elimina el registro en personal_access_token asociado al token que almacenamos en el cliente cuando se registra o loguea un usuario (v323)
+        $user->currentAccessToken()->delete();
+    
+        return [
+            "user" => null
+        ];
     }
 }
