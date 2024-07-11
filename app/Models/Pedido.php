@@ -14,4 +14,9 @@ class Pedido extends Model
         'total'
     ]; */
 
+    public function user() // v336
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pedido;
-use App\Models\PedidoProducto;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth; // v327
 use Carbon\Carbon; // v329
+use Illuminate\Http\Request;
+use App\Models\PedidoProducto;
+use App\Http\Resources\PedidoCollection; // v336
+use Illuminate\Support\Facades\Auth; // v327
 // use Illuminate\Support\Carbon; // v329
 
 class PedidoController extends Controller
@@ -14,9 +15,10 @@ class PedidoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() // v336
     {
-        //
+        // retornamos todos los pedidos y la data del usuario propietario de cada uno de ellos // v336
+        return new PedidoCollection(Pedido::with("user")->where("estado", 0)->get());
     }
 
     /**
