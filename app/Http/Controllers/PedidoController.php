@@ -18,7 +18,12 @@ class PedidoController extends Controller
     public function index() // v336
     {
         // retornamos todos los pedidos y la data del usuario propietario de cada uno de ellos // v336
-        return new PedidoCollection(Pedido::with("user")->where("estado", 0)->get());
+        // "user" hace referencia al nombre de la relacion entre los modelos Pedido y User, definida en Pedido (v337)
+        // "productos" hace referencia al nombre de la relacion entre los modelos Pedido y Prodcto, definida en Pedido (v337)
+        return new PedidoCollection(Pedido::with("user")
+            ->with("productos")
+            ->where("estado", 0)
+            ->get());
     }
 
     /**
