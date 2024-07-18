@@ -31,13 +31,20 @@ Route::middleware('auth:sanctum')->group(function() {
     });
     Route::post('/logout', [AuthController::class, "logout"]); // v323
     Route::apiResource('/pedidos', PedidoController::class); // v325
+
+    // esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) categorias (v298)
+    Route::apiResource('/categorias', CategoriaController::class);
+
+    // // esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) productos (v305)
+    Route::apiResource('/productos', ProductoController::class);
+
 });
 
-// esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) categorias (v298)
-Route::apiResource('/categorias', CategoriaController::class);
+// // esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) categorias (v298)
+// Route::apiResource('/categorias', CategoriaController::class);
 
-// // esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) productos (v305)
-Route::apiResource('/productos', ProductoController::class);
+// // // esta linea crea todos los endpoints necesarios de mi API para el recurso (resource) productos (v305)
+// Route::apiResource('/productos', ProductoController::class);
 
 // autenticacion 
 Route::post('/registro', [AuthController::class, "register"]);
